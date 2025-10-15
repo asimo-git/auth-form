@@ -1,41 +1,31 @@
 import styles from "./Modal.module.css";
-import { Button } from "antd";
-import { Input, Typography } from "antd";
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
-const { Title } = Typography;
+import { useState } from "react";
+import SingInForm from "../SingInForm/SingInForm";
+import CodeForm from "../CodeForm/CodeForm";
 
 export default function Modal() {
+  const [form, setForm] = useState<"login" | "code">("login");
+
+  const handleLoginSuccess = () => {
+    setForm("code");
+  };
+
+  const handleBack = () => {
+    setForm("login");
+  };
+
   return (
     <>
       <div className={styles.card}>
         <div className={styles.logo}>
           <img src="./logo.png"></img>
         </div>
-        <div className={styles.message}>
-          <Title level={3}>Sign in to your account to continue</Title>
-        </div>
-        <form className={styles.form}>
-          <Input
-            size="large"
-            placeholder="Email"
-            prefix={<UserOutlined style={{ color: "rgba(0, 0, 0, 0.45)" }} />}
-            className={styles.input}
-          ></Input>
-          <Input.Password
-            size="large"
-            placeholder="Password"
-            prefix={<LockOutlined style={{ color: "rgba(0, 0, 0, 0.45)" }} />}
-            className={styles.input}
-          ></Input.Password>
-          <Button
-            size="large"
-            type="primary"
-            className={styles.button}
-            disabled
-          >
-            Log in
-          </Button>
-        </form>
+
+        {form === "login" ? (
+          <SingInForm onSuccess={handleLoginSuccess} />
+        ) : (
+          <CodeForm onBack={handleBack} />
+        )}
       </div>
     </>
   );

@@ -1,0 +1,18 @@
+.backButton {
+  position: absolute;
+  top: 32px;
+  left: 32px;
+}
+
+.message {
+  margin-bottom: 24px;
+}
+
+.input {
+  margin-bottom: 16px;
+}
+
+.button {
+  width: 100%;
+  margin-top: 16px;
+}
